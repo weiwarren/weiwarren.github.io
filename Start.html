@@ -148,19 +148,16 @@
                     <section>
                         <h3>Remediation</h3>
                         <p>
-                            Cloud Service Provider for this matter are the best possible choice for the following reasons:
+                            Because iPower runs as an intranet system, an on premise hosted logger must be used.
                         </p>
 
+                        <p>
+                            There are about 450 handled exceptions where the logger can be injected through regular expressions
+                        </p>
 
+                    
 
-                        <ul>
-                            <li>Can provide extense analytics</li>
-                            <li>Used by leaders in the industry</li>
-                            <li>No need to worry about heavy loads</li>
-                            <li>No need for inhouse administration</li>
-                            <li>Provide logging features for multiple technology stacks</li>
-                            <li>Consistent error handling accross projects and stacks</li>
-                        </ul>
+                       
                     </section>
 
                     <section>
@@ -708,6 +705,84 @@ Response.Write(&quot;&lt;TABLE STYLE=&quot; + Chr(34)
 
                 </section>
 
+
+                <!-- .Html.all  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>(HTMLElement).all</h2>
+
+                        <p>
+                            The "all" property returns an extended array of elements contained by the object. 
+                            This property is supported by chrome at the document but not at html elements level.   
+                        </p>
+
+
+<pre><code data-trim>                     
+document.all  /* is supported  */
+tblGridHeader.rows[0].all["someId"]  /* not supported  */
+tblGridHeader.rows[0].cells[0].title  /* not supported  */
+</code></pre>
+
+
+                    </section>
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>Replacing calls with <strong>document.getElementById</strong> or <strong>document.all.someId</strong> was evaluated. However, there are cases 
+                            where IDs are duplicated by data-bound repeaters (rows or cells)</li>
+                        </ul>
+
+
+
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Redefining the .all propertie for Html elements.
+                        </p>
+<pre><code data-trim>
+         
+Object.defineProperty(HTMLElement.prototype, "all", { 
+    get: function () {  
+       /* 
+        - Select an array containing all inner elements (contents). 
+            This array will also be extended by having one property 
+            for every childNode that has an ID  
+        - Cache this query against the element and set the cache 
+            dependency to element changes with a MutationObserver 
+        - Log with setTimout to trace all usages of this pattern and 
+            refactor the code when performance is likely to degrade  
+         */ 
+    }  
+});
+
+</code></pre>             
+
+                    </section>
+
+
+                    <section>
+                        <h3>Additional resources</h3>
+
+                        <p>Regular Expression search for this pattern:</p>
+<pre><code data-trim>
+(?!document)\.all\.[\w]+\.
+</code></pre>
+
+
+
+                    </section>
+
+
+
+                </section>
 
 
 
