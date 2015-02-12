@@ -219,7 +219,6 @@
 
 
                
-
                 <!-- ARRAY INDEXERS -->
 
                 <section data-background>
@@ -297,7 +296,6 @@ function fnGridColumnHide(tblGrid, intColIndex, strDisplayStyle) {
                 </section>
 
 
-              
 
                 <!-- .jse FILES  -->
 
@@ -540,25 +538,8 @@ function fnGridColumnHide(tblGrid, intColIndex, strDisplayStyle) {
 
 
 
-                <!-- PROPERTY CHANGE -->
-
-                <section data-background>
-
-                    <section>
-                        <h2 class="sectionIdx"></h2>
-                        <h2>onpropertychange event</h2>
-
-                        <p>
-                            Investigation of how scripts are configured in the project to evaluate the way remediations can be injected in with a minimal refactoring.
-                        </p>
-                    </section>
-
-               
-
-                </section>
 
 
-                
 
                 <!-- WINDOW.EVENT -->
 
@@ -649,7 +630,6 @@ window.event.propertyName
                 </section>
 
 
-
                
                 <!-- .jse FILES  -->
 
@@ -704,6 +684,7 @@ Response.Write(&quot;&lt;TABLE STYLE=&quot; + Chr(34)
                     </section>
 
                 </section>
+
 
 
                 <!-- .Html.all  -->
@@ -784,6 +765,352 @@ Object.defineProperty(HTMLElement.prototype, "all", {
 
                 </section>
 
+
+
+
+                <!-- .Html.all  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>ActiveXObject</h2>
+
+                        <p>
+                            ActiveX objects used throughout the iPower system require replacement since they do not run in Chrome.
+                        </p>
+
+
+
+
+
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <p>
+                            The following are the ActiveX objects used throughout the code base.
+                        </p>
+
+<pre><code data-trim>                     
+ActiveXObject("Scripting.FileSystemObject") 
+ActiveXObject("Microsoft.XMLHTTP")
+ActiveXObject("Msxml2.XMLHTTP.3.0") 
+ActiveXObject("Msxml2.XMLHTTP.6.0")  
+ActiveXObject("Scripting.Dictionary") 
+ActiveXObject("WScript.Network") 
+ActiveXObject("WScript.Shell") 
+ActiveXObject("Msxml2.XMLHTTP") 
+ActiveXObject("PwCShell.clsShell") 
+ActiveXObject("PwCNovell.NetUser") 
+ActiveXObject("PwCShell.clsShell") 
+ActiveXObject("Word.Application") 
+ActiveXObject("ADODB.Stream") 
+ActiveXObject("PwC.iPower.Authentication.ClientUtility")
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation (A)</h3>
+
+<pre><code>         
+    ActiveXObject("Scripting.FileSystemObject") 
+
+</code></pre>
+
+                        <ul>
+                            <li>
+                                Used to set a maximum size for uploads. Prevents the PostedFile.ContentLength web.config maxRequestLength issue.
+                            </li>
+                            <li>Can be replaced by File Api <a href="http://caniuse.com/#feat=fileapi" target="_blank">(ie10+ and chrome)</a>. 
+                                The File Api provides readonly information such as name, file size, mimetype, and a reference to the file handle.
+                            </li>
+                            <li>Used also in PwCFeeNote.jse file which will be removed.</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (B)
+                        </h3>
+
+<pre><code >          
+    ActiveXObject("Microsoft.XMLHTTP")
+    ActiveXObject("Msxml2.XMLHTTP.3.0") 
+    ActiveXObject("Msxml2.XMLHTTP.6.0")  
+
+</code></pre>
+
+                        <ul>
+                            <li>Used to execute ajax requests.</li>
+                            <li>Can be replaced by jQuery ajax.</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (C)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("Scripting.Dictionary")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used as a Dictionary (key-value pair) object when working with the RecordSet object.</li>
+                            <li>The RecordSet is also an ActiveX and will get replaced by a JavaScript object.</li>
+                            <li>The Scripting.Dictionary can be replaced by a JavaScript only implementation such as: <a href="https://bubblogging.wordpress.com/2013/01/15/js-object-scripting-dictionary/" target="_blank">View example</a></li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (D)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("ADODB.Stream")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used in iPower to capture a downloaded file stream before saving it to a specific directory.</li>
+                            <li>The reference can be found in the pwcFeeNote.jse file which will be removed.</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (E)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("WScript.Shell")
+
+</code></pre>
+
+                        <ul>
+                            <li>Queries registry key "HKCU\...\Device" for default printer. </li>
+                            <li>Opens the Fee Note processing application from pwcFeeNote.jse file which will be removed.</li>
+                            <li>Seems to launch IE and then Adobe reader to print PDFs ( WshShell.AppActivate("frmFNPDFTaxInvoice.aspx?TIPATH=" + (arrPrintBatch[0])))</li>
+                        </ul>
+
+                       
+                        <blockquote style="padding:20px">
+                            This functionality must be entirely removed to comply to standards.
+                        </blockquote>
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (F)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("WScript.Network")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used to enumerate network printers, probably for users who haven't yet configured their preferred ones. </li>
+                        </ul>
+
+
+                        <blockquote style="padding:20px">
+                            This functionality should probably be removed, or provide a description on how it can be manually achieved if using chrome.
+                        </blockquote>
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (G)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("Word.Application")
+
+</code></pre>
+
+                        <ul>
+                            <li>LaunchesTax Invoice in Word from pwcFeeNote.jse. </li>
+                            <li>This file will be removed.</li>
+                        </ul>
+
+                      
+                    </section>
+
+                    
+                    <section>
+                        <h3>
+                            Remediation (H)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwCShell.clsShell")
+
+</code></pre>
+
+                        <ul>
+                            <li>This function uses an ActiveXObject to shell/execute any given application. </li>
+                            <li>If this functionality is to be kept, the PwCShell.clsShell application would have to be modified to also accept 
+                                <a href="http://stackoverflow.com/questions/24219144/native-messaging-chrome" target="_blank">Chrome Native Messaging</a></li>
+
+
+                            
+                        </ul>
+
+
+                    </section>
+                    
+
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (I)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwCNovell.NetUser")
+
+</code></pre>
+
+                        <ul>
+                            <li>Instantiated in a fnShowAbout() that used to display user info but is not referenced anymore. </li>
+                            <li>Instantiated in a fnPwCNvllAuthenticate() that was used to authenticate via Novell but is not referenced anymore.</li>
+                            <li>Reads and writes to a local .ini file to chose the preferred authentication mechanism. However this functionality does not seem to be used anymore. </li>
+                        </ul>
+
+
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (J)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwC.iPower.Authentication.ClientUtility") 
+
+</code></pre>
+
+                        <ul>
+                            <li>Used in a form in the PwCLogin project to log the user into the application. 
+                                According to the current web.config, this project seems to have been replaced by the iLogin project which is ActiveX free. </li>
+                        </ul>
+
+
+                    </section>
+
+
+                </section>
+
+
+
+                <!-- PROPERTY CHANGE -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Custom functions for XSLT Transformations</h2>
+
+                        <p>
+                            Xslt transformations are natively supported by IE and Chrome. However some transformation files contain custom extension JScript functions which
+                            are not supported in Chrome.
+                        </p>
+                    </section>
+
+
+
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                XSLT transformations are supported by Chrome and IE with independent native implementations: <a href="POC/xslt1.html" target="_blank">view POC</a>.
+                            </li>
+                            <li>
+                                Custom extension functions are not supported by Chrome's XSLTProcessor.
+                            </li>
+                        </ul>
+
+<pre><code data-trim>  
+&lt;ms:script language=&quot;JScript&quot; implements-prefix=&quot;usr&quot;&gt;
+&lt;![CDATA[
+	function ItemFromListGet(strItemList, intIndex, strDelimitor)
+	{
+		var arItemList = new Array();
+		var strList = String(strItemList);
+        //Split the list into an array
+		arItemList = strList.split(strDelimitor);
+			
+		//Return the required index
+		return arItemList[intIndex];
+	}
+]]&gt;
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+<pre><code data-trim>           
+&lt;xsl:for-each select=&quot;Table&quot;&gt;
+    &lt;!-- vcClientName --&gt;
+    &lt;xsl:sort select=&quot;CCODE&quot; order=&quot;ascending&quot;/&gt;
+    &lt;!-- chJobCode --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),7,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- chProjectCode --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),9,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- chYear --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),10,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- intTSEntryID --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),0,&#39;;&#39;)&quot;/&gt; 
+    .
+    .
+    .
+</code></pre>
+
+                        <p>
+                            The custom function ItemFromListGet must be replaced by its return value. This might only be possible if the field names used in 
+                           the sort by remain constant. 
+                        </p>
+
+                    </section>
+
+
+
+
+                </section>
 
 
 
