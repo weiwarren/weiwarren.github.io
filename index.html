@@ -1,13 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title> PWC IPower Browser Remediation - Kloud Solutions </title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="">
+		<meta name="author" content="Hector Maldonado, Warren Wei">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,10 +15,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+       
+       
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -38,370 +40,1293 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
+			
 			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
+				
 
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
+                <section  >
+                    <img src="custom/790px-Pwc_logo.svg_-300x227.png" style="border:0; max-width:300px; max-height:250px;" />
+                    <h1>PwC iPower </h1>
+                    <h3>Browser Remediation</h3>
+                    <p>
+                        <small>Created by Kloud Solutions</small>
+                    </p>
+                </section>
 
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
 
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
+             
 
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
+                <!-- GLOBAL SCRIPT CONFIGURATION -->
 
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
+                <section data-background>
 
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Global Script Configuration</h2>
 
-						```
-						<section data-markdown>
-						  ## Markdown support
+                        <p>
+                            Investigation of how scripts are configured in the project to evaluate the way remediations can be injected in with a minimal refactoring.
+                        </p>
+                    </section>
 
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
+                    <section>
+                        
+                        <h3>Analysis</h3>
+                        <ul>
+                            <li>Static resources such as JavaScripts and StyleSheets are configured on every aspx page </li>
+                            <li>Global resource references (iShared) are repeated across pages</li>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+                        </ul>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
+                        <pre><code>                     
+	&lt;LINK HREF=&quot;../iShared/styles/pwcGrid.css&quot; ... 
+	&lt;LINK HREF=&quot;../iShared/styles/pwcLookUp.css&quot; ...
+	&lt;LINK HREF=&quot;../iShared/styles/pwcGlobal.css&quot;  ...
+	&lt;SCRIPT SRC=&quot;../iShared/scripts/pwcClientJobProjSelection.js&quot; ...
+					    </code></pre>
 
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section>
+                    </section>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                            An Asp.Net module could be developed to inject the new static web resouces into the output stream.
+                        </p>
 
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-				</section>
+                    </section>
 
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code>Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-				</section>
+                </section>
+				
+                
+			
+                
+                <!-- EXCEPTION HANDLING -->
 
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						You can override background transitions per-slide.
-					</p>
-					<pre><code style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-				</section>
+                <section data-background>
 
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Global Exception Handling</h2>
 
-    var nodes = document.querySelectorAll( selector );
+                        <p>
+                            Regular expressions queries against the code base have helped us to identify a great number of commonly used legacy techniques that will be replaced.
+                        </p>
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+                        <p>
+                            However,we will still require monitoring tools to inform us about the edge cases that
+                            we have not been able to identify yet as well as any possible errors that could occur on the browser.
+                        </p>
+                    </section>
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <p>
+                            Currently IPower does not seem to benefit from a global way of monitoring client side exceptions.
+                        </p>
+
+<pre><code data-trim>
+    if (objXMLRS.Error == true) {
+        //Take action based on the error code returned
+        switch (objXMLRS.ReturnCode) {
+            case gkCODE_ERROR_CONNECTION:
+                return false;
+            default:
+                alert(objXMLRS.ErrorMsg);
+                return false;
+                break;
+        }
     }
-  }
+</code></pre>
+
+
+
+
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                            Because iPower runs as an intranet system, an on premise hosted logger must be used.
+                        </p>
+
+                        <p>
+                            There are about 450 handled exceptions where the logger can be injected through regular expressions
+                        </p>
+
+                    
+
+                       
+                    </section>
+
+                    <section>
+
+                        <h4> Option: <strong> Sentry</strong></h4>
+
+                        <ul>
+                            <li>Full Stack  Open Source error handling framework</li>
+                            <li>Go to <a href="https://www.getsentry.com/welcome/" target="_blank">Website</a></li>
+                            <li>Paid Cloud Hosted service owned by DISCUS (Up to 200 events per minute $199/month)</li>
+                        </ul>
+
+                        <br />
+                        <br />
+                        <blockquote style="padding:20px">
+                            Used by Instagram, Uber, NYTimes, Spotify, etc.
+                        </blockquote>
+                    </section>
+
+                    <section>
+
+                        <h4> Option: <strong>AirBreak</strong></h4>
+
+                        <ul>
+                            <li>Full Stack error handling framework</li>
+                            <li>Go to <a href="https://airbrake.io/" target="_blank">Website</a></li>
+                            <li> Paid Cloud Hosted service owned by Rackspace (from $39 for 5 projects users to $199/month for 40 projects)</li>
+                        </ul>
+
+
+                        <br />
+                        <br />
+                        <blockquote style="padding:20px">
+                            Used by Oracle, Groupon, Zendesk, TaskRabit, etc.
+                        </blockquote>
+
+                    </section>
+
+                    <section>
+
+                        <h4> Option: <strong>Errorception</strong></h4>
+
+                        <ul>
+                            <li>JavaScript specialized error handling framework</li>
+                            <li>Go to <a href=" https://errorception.com" target="_blank">Website</a></li>
+                            <li>  Paid Cloud Hosted service owned by Rakesh Pai (Up to 20,000 errors/day for $59/month)</li>
+                        </ul>
+
+
+                        <br />
+                        <br />
+                        <blockquote style="padding:20px">
+                            Used by KhanAccademy, SoundCloud, The Guardian, etc.
+                        </blockquote>
+
+                    </section>
+
+                </section>
+
+
+               
+                <!-- ARRAY INDEXERS -->
+
+                <section data-background>
+
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Array Indexers</h2>
+
+                        <p>
+                            Array element are accessed by using parenthesis instead of square brackets.
+                        </p>
+
+<pre><code data-trim>
+function fnGridColumnHide(tblGrid, intColIndex, strDisplayStyle) {
+    //apply the given style to the col group
+    try {
+        //set COL style (required to hide column on grid)
+        tblGrid
+          .children(0)
+          .children(intColIndex)
+          .style.display = strDisplayStyle;
+        //set TD style - this has undesirable side effects
+    }
+    catch (e) {
+    }
+    return;
 }
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
+    </code></pre>
+                    </section>
 
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
+                    <section>
+                        <h3>Analysis</h3>
 
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
+                        <ul>
+                            <li> Not supported in chrome and probably will not be supported after IE 11.</li>
+                            <li>This IE specific operator is widely used across all JavasSript files.</li>
+                            <li>
+                                Usage examples are the following: 
+                                cell(x), rows(x), item(x), attributes(x), children(x), Fields(x), forms(x), childNodes(x), options(x)
+                            </li>
+                        </ul>
 
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							<tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							<tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							<tr>
-						</tbody>
-					</table>
-				</section>
+                    </section>
 
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                            We failed to extend the HTMLSelectElement type's prototype with a function of the stlye "options(idx)" because the browser prevents it, possibly 
+                            prevent property vs method collision.
+                            
+                        </p>
+                        <p>
+                            This case will then have to be resolved by replacing instances of the pattern in  the entire codebase using regular expressions.
+                        </p>
+                    </section>
 
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
+                    <section>
+                        <h3>Additional resources</h3>
 
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
+                        <p>Regular Expression search for this pattern:</p>
+<pre><code data-trim>
+[^\w][\w]+\.(?!setdate|substring|scrollto|setposition|charat
+    |insertcell|setminutes|setseconds|sethours
+    |setmilliseconds|toFixed|fromCharCode|toFixed
+    |substr)[\w]+\(\d+\)[^\w] 
+</code></pre>
+                        
+                        <p>Filter files: pwc*.js</p>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe src="//www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
+                    </section>
 
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
 
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
+                </section>
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
 
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
+                <!-- .jse FILES  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>.jse Files</h2>
+
+                        <p>
+                            There are a number of JScript.Encode files which require remediation.
+                        </p>
+
+<pre><code>
+    &lt;script src=&quot;../iShared/scripts/pwcEncrypt.jse&quot; ...
+    &lt;script src=&quot;../iShared/scripts/pwcFeeNote.jse&quot; ...
+    &lt;script src=&quot;../iShared/scripts/pwcFeeNoteConstants.jse&quot; ...
+    </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li> JScript Encoded File developed by Microsoft</li>
+                            <li>Script written in JScript, a programming language used for Windows and Microsoft Internet Explorer scripting; contains source code in a format similar to JavaScript, but the JScript specification is maintained by Microsoft..</li>
+                            <li>JScript is often used for including interactive content in Web pages and Web applications.</li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Initial discussions revealed that these files do not contain useful logic and therefore can be removed.
+                        </p>
+
+                    </section>
+
+                </section>
+
+
+               
+
+                <!-- IE EVENTS -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>IE specific events</h2>
+
+                        <p>
+                            There are a number of Internet Explorer specific browser events that have to be ported to their cross browser alternative.
+                        </p>
+                        <p>
+                            The list of the events can be  
+                            <a href="http://en.wikipedia.org/wiki/DOM_events#Microsoft-specific_events" target="_blank">viewed here</a>.
+
+                        </p>
+                    </section>
+
+                    <section>
+                        <h3>Analysis: <strong>Safe Events (A)</strong></h3>
+
+                        <ul>
+                            <li><strong>cut|copy|paste</strong>: <a href="http://www.quirksmode.org/dom/events/cutcopypaste.html" target="_blank">is cross browser compatible</a> </li>
+                            <li><strong>beforecut|beforecopy|beforepaste</strong>: don’t seem to be present</li>
+                            <li><strong>contextmenu</strong>: <a href="http://www.quirksmode.org/dom/events/contextmenu.html" target="_blank">is cross browser compatible</a></li>
+                            <li><strong>drag|dragstart|dragenter|dragover|dragleave|dragend|drop</strong>: don't seem to be present.</li>
+                            <li><strong>help</strong>: captured by flash plugin script but not handled
+                            <li><strong>beforeunload</strong>: <a href="http://www.w3schools.com/jsref/event_onbeforeunload.asp" target="_blank">is cross browser compatible</a></li>
+                            <li><strong>stop</strong>: does not seem to be present</li>
+               
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <h3>Analysis: <strong>Safe Events (B)</strong></h3>
+
+                        <ul>
+                            <li><strong>beforeeditfocus|start|finish|bounce</strong>: don’t seem to be present</li>
+                            <li><strong>filterchange|losecapture</strong>: don’t seem to be used</li>
+                            <li><strong>cellchange|dataavailable|datasetchanged</strong>: don’t seem to be used</li>
+                            <li><strong>errorupdate|rowenter|rowexit|rowsdelete|rowinserted</strong>: don’t seem to be used</li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <h3>Analysis: <strong>Unsafe </strong></h3>
+
+                        <ul>
+                            <li><strong>afterupdate|beforeupdate|datasetcomplete</strong></li>
+                            <li><strong>selectstart</strong></li>
+                            <li><strong>beforeprint|afterprint</strong></li>
+                            <li><strong>propertychange</strong></li>
+                            <li><strong>readystatechange</strong></li>
+                        </ul>
+                       
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Each event type will have to be handled independently and registered using their standard counterparts.
+                        </p>
+
+                    </section>
+
+                    <section>
+                        <h3>Additional resources (A)</h3>
+
+                        <p>Search for <strong> afterupdate|beforeupdate|datasetcomplete</strong></p>
+<pre><code data-trim>
+         [^\w](on|\.)(afterupdate|beforeupdate|datasetcomplete)[^\w] 
+</code></pre>
+
+                        <p>File names to match expression: </p>
+<pre><code data-trim>
+(?!Autofac|Telerik|ISNet|log4net|Microsoft|Newtonsoft
+    |RadAjax|StackExchange|System|RadGrid|RadMenu
+    |SLCommonControls|iClient).*
+</code></pre>
+
+                        <p>Requires custom code to mimic the behaviour </p>   
+
+                    </section>
+
+                    <section>
+                        <h3>Additional resources (B)</h3>
+
+                        <p>Search for <strong>selectstart</strong></p>
+<pre><code data-trim>
+         [^\w](on|\.)(selectstart)[^\w] 
+</code></pre>
+
+                        <p>File names to match expression: </p>
+<pre><code data-trim>
+(?!Autofac|Telerik|ISNet|log4net|Microsoft|Newtonsoft
+    |RadAjax|StackExchange|System|RadGrid|RadMenu
+    |SLCommonControls|iClient).*
+</code></pre>
+
+                        <ul>
+                            <li>
+                                There is a chance it could work according to the following document: <a href=" http://help.dottoro.com/ljnactnw.php" target="_blank"> click to view</a>
+                            </li>
+                            <li>
+                                Otherwise we could introduce a cross browser workaround such
+                                as
+                                the following:
+                                <a href="http://stackoverflow.com/questions/235411/is-there-an-internet-explorer-approved-substitute-for-selectionstart-and-selecti">
+                                    click to view
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>Additional resources (C)</h3>
+
+                        <p>Search for <strong>beforeprint|afterprint</strong></p>
+<pre><code data-trim>
+        [^\w](on|\.)(beforeprint|afterprint)[^\w] 
+</code></pre>
+
+                        <p>File names to match expression: </p>
+<pre><code data-trim>
+(?!Autofac|Telerik|ISNet|log4net|Microsoft|Newtonsoft
+    |RadAjax|StackExchange|System|RadGrid|RadMenu
+    |SLCommonControls|iClient).*
+</code></pre>
+
+                        <ul>
+                            <li>Neither is supported by Chrome: 
+                            <a href="http://www.w3schools.com/tags/ev_onbeforeprint.asp" target="_blank">beforeprint</a> , 
+                            <a href="http://www.w3schools.com/tags/ev_onafterprint.asp" target="_blank">afterprint</a> 
+                            </li>
+                            <li>User workflow must be rethought since there is no cross browser remediation possible.</li>
+                        </ul>
+                       
+                    </section>
+
+                    <section>
+                        <h3>Additional resources (D)</h3>
+
+                        <p>Search for <strong>propertychange</strong></p>
+<pre><code data-trim>
+                 [^\w](on|\.)(propertychange)[^\w]  
+</code></pre>
+
+                        <p>File names to match expression: </p>
+<pre><code data-trim>
+(?!Autofac|Telerik|ISNet|log4net|Microsoft|Newtonsoft
+    |RadAjax|StackExchange|System|RadGrid|RadMenu
+    |SLCommonControls|iClient).*
+</code></pre>
+
+                        <ul>
+                            <li>
+                                Neither is supported by Chrome:
+                                <a href=" http://help.dottoro.com/ljufknus.php" target="_blank">propertychange</a> 
+                            </li>
+                            <li>This catch all case would have to be independently evaluated whenever used and replaced with cross browser specific events.</li>
+                            <li>General resources: <a href="http://benalpert.com/2013/06/18/a-near-perfect-oninput-shim-for-ie-8-and-9.html" target="_blank">click to view</a></li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                        <h3>Additional resources (E)</h3>
+
+                        <p>Search for <strong>readystatechange</strong></p>
+<pre><code data-trim>
+        [^\w](on|\.)(readystatechange|)[^\w]
+</code></pre>
+
+                        <p>File names to match expression: </p>
+<pre><code data-trim>
+(?!Autofac|Telerik|ISNet|log4net|Microsoft|Newtonsoft
+    |RadAjax|StackExchange|System|RadGrid|RadMenu
+    |SLCommonControls|iClient).*
+</code></pre>
+
+                        <ul>
+                            <li>
+                                Not supported by Chrome: 
+                                <a href=" http://help.dottoro.com/ljerfwdm.php" target="_blank">readystatechange</a>
+                            </li>
+                            <li>Maybe can be overcome with DOM change observer: <a href="http://stackoverflow.com/questions/3219758/detect-changes-in-the-dom" target="_blank">click to view</a></li>
+                        </ul>
+
+                    </section>
+                </section>
+
+
+
+
+                <!-- WINDOW.EVENT -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>window.event</h2>
+
+                        <p>
+                            Internet Explorer provides a global object window.event, which references the last event. And before IE9 there are no arguments in the handler.
+                        </p>
+
+<pre><code data-trim>                     
+element.onclick = function() {
+    // window.event - is the event object
+}	
+</code></pre>
+                        
+
+
+
+                    </section>
+
+                    <section>
+
+                        <h3>Analysis (A)</h3>
+                        <ul>
+                            <li>window.event is supported by IE, Chrome, Safari and Opera: <a href="http://blog.strictly-software.com/2009/10/windowevent-support-cross-browser.html" target="_blank">view info (confirmed by tests)</a> </li>
+                            <li>The following is a list of all event properties and their support cross browser: <a href="http://help.dottoro.com/ljlsaxen.php" target="_blank">view list</a> </li>
+                            
+                        </ul>
+
+                        <pre><code data-trim>                     
+window.event.keyCode
+window.event.returnValue
+window.event.clientX
+window.event.clientY
+window.event.srcElement
+window.event.cancelBubble
+window.event.offsetX
+window.event.offsetY
+window.event.button
+window.event.propertyName
+window.event.toElement
+					    </code></pre>
+
+                    </section>
+
+                    <section>
+
+                        <h3>Analysis (B)</h3>
+                        <p>Safe uses are the following: </p>
+
+                        <pre><code data-trim>                     
+window.event.keyCode
+window.event.returnValue
+window.event.clientX
+window.event.clientY
+window.event.srcElement
+window.event.cancelBubble
+window.event.offsetX
+window.event.offsetY
+window.event.button
+window.event.toElement
+					    </code></pre>
+
+                        <br />
+                        <p>Unsupported uses are the following (only in <strong>bhvTableRowOver.htc</strong> and  <strong>bhvRollOver.htc</strong>)</p>
+                        <pre><code data-trim>                     
+window.event.propertyName
+					    </code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                            <strong>bhvTableRowOver.htc</strong> and  <strong>bhvRollOver.htc</strong> are behaviours originally authored by Microsoft
+                            and used to apply custom functionality to tables: striping, hovering and other useful features to regular and data-bound table rows.
+                        </p>
+                        <p>
+                            These scripts should be entirely removed and replaced since they are quite complex and are not widely used (only in the <strong>PwCCube</strong> project).
+                        </p>
+                    </section>
+
+                </section>
+
+
+               
+                <!-- .HTC BEHAVIOR  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>.HTC Behaviors</h2>
+
+                        <p>
+                            Introduced in Internet Explorer 5, HTCs provide a simple mechanism to implement DHTML behaviors in script and are obsolete in IE10 and not supported by Chrome. 
+                        </p>
+
+                    </section>
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>There are 30 HTC files in total</li>
+                            <li>Two files are authored by Microsoft and are used to extend functionality in Grids (<strong>PwCCube</strong>)</li>
+                            <li>Attached through StyleSheets, AdhocStyles and through code in one case </li>
+                        </ul>
+
+
+<pre><code data-trim>                     
+         &lt;style&gt;
+    .clsGridRow {
+        BEHAVIOR: url(../iShared/scripts/pwcIntersoftGrid.htc);
+        CURSOR: hand;
+    }
+&lt;/style&gt;
+
+Response.Write(&quot;&lt;TABLE STYLE=&quot; + Chr(34) 
+    + &quot;behavior:url(&#39;scripts/bhvTablerowOver.htc&#39;)&quot; 
+    + Chr(34) + &quot; SELECTABLE=0 STRIPED=1 BORDER=0 WIDTH=100% &gt;&quot; 
+    + vbCrLf) 
+</code></pre>
+
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                       <p>
+                           .htc files must be independently evaluated and rewritten making sure their methods do not pollute the global context. 
+                       </p>
+                        <p>
+                            The two .htc  authored by Microsoftused in the PwCCube project must be rewritten or replaced by a library that extends functionality on tables.
+                        </p>
+
+                    </section>
+
+                </section>
+
+
+
+                <!-- HTML.ALL  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>(HTMLElement).all</h2>
+
+                        <p>
+                            The "all" property returns an extended array of elements contained by the object. 
+                            This property is supported by chrome at the document but not at HTML elements level.   
+                        </p>
+
+
+<pre><code data-trim>                     
+document.all  /* is supported  */
+tblGridHeader.rows[0].all["someId"]  /* not supported  */
+tblGridHeader.rows[0].cells[0].title  /* not supported  */
+</code></pre>
+
+
+                    </section>
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>Replacing calls with <strong>document.getElementById</strong> or <strong>document.all.someId</strong> was evaluated. However, there are cases 
+                            where IDs are duplicated by data-bound repeaters (rows or cells)</li>
+                        </ul>
+
+
+
+                    </section>
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Redefining the .all propertie for Html elements.
+                        </p>
+<pre><code data-trim>
+         
+Object.defineProperty(HTMLElement.prototype, "all", { 
+    get: function () {  
+       /* 
+        - Select an array containing all inner elements (contents). 
+            This array will also be extended by having one property 
+            for every childNode that has an ID  
+        - Cache this query against the element and set the cache 
+            dependency to element changes with a MutationObserver 
+        - Log with setTimout to trace all usages of this pattern and 
+            refactor the code when performance is likely to degrade  
+         */ 
+    }  
+});
+
+</code></pre>             
+
+                    </section>
+
+
+                    <section>
+                        <h3>Additional resources</h3>
+
+                        <p>Regular Expression search for this pattern:</p>
+<pre><code data-trim>
+(?!document)\.all\.[\w]+\.
+</code></pre>
+
+
+
+                    </section>
+
+
+
+                </section>
+
+
+
+
+                <!-- ACTIVEXOBJECTS  -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>ActiveXObject</h2>
+
+                        <p>
+                            ActiveX objects used throughout the iPower system require replacement since they do not run in Chrome.
+                        </p>
+
+
+
+
+
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <p>
+                            The following are the ActiveX objects used throughout the code base.
+                        </p>
+
+<pre><code data-trim>                     
+ActiveXObject("Scripting.FileSystemObject") 
+ActiveXObject("Microsoft.XMLHTTP")
+ActiveXObject("Msxml2.XMLHTTP.3.0") 
+ActiveXObject("Msxml2.XMLHTTP.6.0")  
+ActiveXObject("Scripting.Dictionary") 
+ActiveXObject("WScript.Network") 
+ActiveXObject("WScript.Shell") 
+ActiveXObject("Msxml2.XMLHTTP") 
+ActiveXObject("PwCShell.clsShell") 
+ActiveXObject("PwCNovell.NetUser") 
+ActiveXObject("PwCShell.clsShell") 
+ActiveXObject("Word.Application") 
+ActiveXObject("ADODB.Stream") 
+ActiveXObject("PwC.iPower.Authentication.ClientUtility")
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation (A)</h3>
+
+<pre><code>         
+    ActiveXObject("Scripting.FileSystemObject") 
+
+</code></pre>
+
+                        <ul>
+                            <li>
+                                Used to set a maximum size for uploads. Prevents the PostedFile.ContentLength web.config maxRequestLength issue.
+                            </li>
+                            <li>Can be replaced by File Api <a href="http://caniuse.com/#feat=fileapi" target="_blank">(ie10+ and chrome)</a>. 
+                                The File Api provides readonly information such as name, file size, mimetype, and a reference to the file handle.
+                            </li>
+                            <li style="color:red !important">Used also in PwCFeeNote.jse file. (Will this file be removed?).</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (B)
+                        </h3>
+
+<pre><code >          
+    ActiveXObject("Microsoft.XMLHTTP")
+    ActiveXObject("Msxml2.XMLHTTP.3.0") 
+    ActiveXObject("Msxml2.XMLHTTP.6.0")  
+
+</code></pre>
+
+                        <ul>
+                            <li>Used to execute ajax requests.</li>
+                            <li>Can be replaced by jQuery ajax.</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (C)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("Scripting.Dictionary")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used as a Dictionary (key-value pair) object when working with the RecordSet object.</li>
+                            <li>The RecordSet is also an ActiveX and will get replaced by a JavaScript object.</li>
+                            <li>The Scripting.Dictionary can be replaced by a JavaScript only implementation such as: <a href="https://bubblogging.wordpress.com/2013/01/15/js-object-scripting-dictionary/" target="_blank">View example</a></li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (D)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("ADODB.Stream")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used in iPower to capture a downloaded file stream before saving it to a specific directory.</li>
+                            <li style="color:red !important">Used also in PwCFeeNote.jse file. (Will this file be removed).</li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (E)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("WScript.Shell")
+
+</code></pre>
+
+                        <ul>
+                            <li>Queries registry key "HKCU\...\Device" for default printer. </li>
+                            <li style="color:red !important">Opens the Fee Note processing application from pwcFeeNote.jse file. (Will this file be removed?).</li>
+                            <li>Seems to launch IE and then Adobe reader to print PDFs ( WshShell.AppActivate("frmFNPDFTaxInvoice.aspx?TIPATH=" + (arrPrintBatch[0])))</li>
+                        </ul>
+
+                       
+                        <blockquote style="padding:20px">
+                            This functionality must be entirely removed to comply to standards.
+                        </blockquote>
+                    </section>
+
+
+                    <section>
+                        <h3>
+                            Remediation (F)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("WScript.Network")
+
+</code></pre>
+
+                        <ul>
+                            <li>Used to enumerate network printers, probably for users who haven't yet configured their preferred ones. </li>
+                        </ul>
+
+
+                        <blockquote style="padding:20px">
+                            This functionality should probably be removed, or provide a description on how it can be manually achieved if using chrome.
+                        </blockquote>
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (G)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("Word.Application")
+
+</code></pre>
+
+                        <ul>
+                            <li style="color:red !important">LaunchesTax Invoice in Word from PwCFeeNote.jse file. (Will this file be removed?).</li>
+                        </ul>
+
+                      
+                    </section>
+
+                    
+                    <section>
+                        <h3>
+                            Remediation (H)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwCShell.clsShell")
+
+</code></pre>
+
+                        <ul>
+                            <li>This function uses an ActiveXObject to shell/execute any given application. </li>
+                            <li>The power launcher page heavily relies on it. </li>
+                            <li>If this functionality is to be kept, the PwCShell.clsShell application would have to be modified to also accept 
+                                <a href="http://stackoverflow.com/questions/24219144/native-messaging-chrome" target="_blank">Chrome Native Messaging</a>
+                            </li>
+
+
+                            
+                        </ul>
+
+
+                    </section>
+                    
+
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (I)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwCNovell.NetUser")
+
+</code></pre>
+
+                        <ul>
+                            <li>Instantiated in a fnShowAbout() that used to display user info but is not referenced anymore. </li>
+                            <li>Instantiated in a fnPwCNvllAuthenticate() that was used to authenticate via Novell but is not referenced anymore.</li>
+                            <li>Reads and writes to a local .ini file to chose the preferred authentication mechanism. However this functionality does not seem to be used anymore. </li>
+                        </ul>
+
+
+                    </section>
+
+
+
+
+                    <section>
+                        <h3>
+                            Remediation (J)
+                        </h3>
+
+<pre><code>          
+    ActiveXObject("PwC.iPower.Authentication.ClientUtility") 
+
+</code></pre>
+
+                        <ul>
+                            <li>Used in a form in the PwCLogin project to log the user into the application. 
+                                According to the current web.config, this project seems to have been replaced by the iLogin project which is ActiveX free. </li>
+                        </ul>
+
+
+                    </section>
+
+
+                </section>
+
+
+
+                <!-- CUSTOM XSLT FUNCTIONS -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Custom functions for XSLT Transformations</h2>
+
+                        <p>
+                            Xslt transformations are natively supported by IE and Chrome. However some transformation files contain custom extension JScript functions which
+                            are not supported in Chrome.
+                        </p>
+                    </section>
+
+
+
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                XSLT transformations are supported by Chrome and IE with independent native implementations: <a href="POC/xslt1.html" target="_blank">view POC</a>.
+                            </li>
+                            <li>
+                                Custom extension functions are not supported by Chrome's XSLTProcessor.
+                            </li>
+                        </ul>
+
+<pre><code data-trim>  
+&lt;ms:script language=&quot;JScript&quot; implements-prefix=&quot;usr&quot;&gt;
+&lt;![CDATA[
+	function ItemFromListGet(strItemList, intIndex, strDelimitor)
+	{
+		var arItemList = new Array();
+		var strList = String(strItemList);
+        //Split the list into an array
+		arItemList = strList.split(strDelimitor);
+			
+		//Return the required index
+		return arItemList[intIndex];
+	}
+]]&gt;
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+<pre><code data-trim>           
+&lt;xsl:for-each select=&quot;Table&quot;&gt;
+    &lt;!-- vcClientName --&gt;
+    &lt;xsl:sort select=&quot;CCODE&quot; order=&quot;ascending&quot;/&gt;
+    &lt;!-- chJobCode --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),7,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- chProjectCode --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),9,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- chYear --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),10,&#39;;&#39;)&quot;/&gt; 
+    &lt;!-- intTSEntryID --&gt;
+    &lt;xsl:sort select=&quot;usr:ItemFromListGet(string(EP),0,&#39;;&#39;)&quot;/&gt; 
+    .
+    .
+    .
+</code></pre>
+
+                        <p>
+                            The custom function ItemFromListGet must be replaced by its return value. This might only be possible if the field names used in 
+                           the sort by remain constant. 
+                        </p>
+
+                    </section>
+
+
+
+
+                </section>
+
+
+                
+                <!-- MODAL DIALOG -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Modal Dialog</h2>
+
+                        <p>
+                            Modal Dialog allows applications to show a dialog of HTML content that freezes all other content while showing. 
+                           Chrome and other browsers are removing its support.
+                        </p>
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Whenever a page requests a modal dialog to open, any JavaScript execution in the originating page completely paused until the modal is closed.
+                            </li>
+                            <li>
+                                An opener page can pass initialization values through a parameter that creates a window.dialogArguments property on the modal window.
+                            </li>
+                            <li>
+                                The modal window can then return values back to its opener document by assigning a value to window.returnValue.
+                            </li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                           The ShowModalDialog Polyfill  can be used to provide support for this functionality in Chrome: <a href="https://github.com/niutech/showModalDialog" target="_blank">View project</a> .
+                        </p>
+                        <p>
+                            This project leverages the "Dialog" HTML5 element to display the dialog and stop code execution while it is open (when window.showModalDialog is not supported). 
+                        </p>
+                        <p>
+                            It also complies to the window.ShowModalDialog interface.
+                        </p>
+
+<pre><code data-trim>           
+function() {
+    //statements before showing a modal dialog
+    var rt = window.showModalDialog( url [, arguments, options] );
+    //statements after closing a modal dialog
+});
+</code></pre>
+
+                    </section>
+
+
+                </section>
+
+
+
+                <!-- ELEMENT.ALL.TAGS -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>*.all.tags()</h2>
+
+                        <p>
+                            Retrieves a collection of objects that have the specified HTML tag name contained within another HTML element. 
+                            Its behavior is similar to HTMLElement.all in the sense that it applies to all elements.
+                        </p>
+                       
+
+                       
+<pre><code data-trim>           
+document.all.tags('tr')[1].all.tags('td')[0].innerText
+</code></pre>
+
+                        
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <p>
+                                This functionality is not supported in Chrome and its support has been removed in IE11.
+                            </p>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                   
+                        <p>
+                            Extend the return object from the *.all remediation extension with a function that queries the calling object for its children by tag name.
+                        </p>
+
+<pre><code data-trim>
+         
+Object.defineProperty(HTMLElement.prototype, "all", { 
+    get: function () {  
+       /* 
+        - Implement functionality described in the *.all remediation.
+        - extend the return object with: 
+            rt.tags = function(t){ return [el].getElementsByTagName(t) }  
+        
+         */ 
+    }  
+});
+
+</code></pre>   
+
+                    </section>
+
+
+                </section>
+
 
 			</div>
 
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
+        <script src="js/jquery-1.11.2.js"></script>
 		<script src="js/reveal.js"></script>
 
+
+        <style>
+            h1, h2, h3, h4, h5, h6 {
+                text-transform: none !important;
+                font-weight: normal !important;
+                letter-spacing: -1px !important;
+            }
+
+            h2 {
+                font-size: 1.8em !important;
+            }
+
+            h3 {
+                font-size: 1.5em !important;
+            }
+
+            h4 {
+                font-size: 1.3em !important;
+            }
+
+            h2.sectionIdx {
+                font-size: 3em !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                line-height: 0.8em;
+                font-weight: bold;
+                color: #444;
+            }
+        </style>
+
+
+        <script>
+            (function () {
+                var colors = ['CDFFC5', 'f5ebd9', 'FFD7A9', 'ddeee6', 'FFABC4', 'd6ded0', 'BEACFF', 'f5d9f4', 'A0E1E8', 'e9ceeb']
+                var colorStack = [];
+                
+                function getNextColor() {
+                    if(colorStack.length == 0)
+                        colorStack = colors.slice(0).reverse();
+                    return '#' + colorStack.pop();
+                }
+
+                function prepare() {
+                    $('section[data-background]').each(function (idx) {
+                        var $el = $(this);
+                        $el.find('.sectionIdx').text(idx + 1);
+                        var color = getNextColor();
+                        console.log($el)
+                        $el.attr('data-background', color);
+                    })
+                }
+
+                prepare();
+
+            })();
+        </script>
 		<script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                slideNumber: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                // Optional reveal.js plugins
+                dependencies: [
+					{ src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+                ]
+            });
 
+            Reveal.configure({ backgroundTransition: 'zoom' })
 		</script>
 
 	</body>
