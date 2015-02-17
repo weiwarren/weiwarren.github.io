@@ -1201,9 +1201,9 @@ document.all.tags('tr')[1].all.tags('td')[0].innerText
                         <h3>Analysis</h3>
 
                         <ul>
-                            <p>
+                            <li>
                                 This functionality is not supported in Chrome and its support has been removed in IE11.
-                            </p>
+                            </li>
                         </ul>
 
                     </section>
@@ -1236,6 +1236,132 @@ Object.defineProperty(HTMLElement.prototype, "all", {
 
 
                 </section>
+
+
+                <!-- HtmlElement ATTRIBUTE TO EXPANDO PROPERTIES -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>Html Attributes-to-Expandos</h2>
+
+                        <p>
+                            IE8 automatically expands HTML in-memory representation of Elements with a property for every attribute it finds on the HTML markup element. 
+                        </p>
+
+                        <p>
+                            This behavior has been removed in IE9 and it is not supported in Chrome.
+                        </p>
+
+
+<pre><code data-trim>           
+&lt;TBODY DATASRC=&quot;#xmlTTJOpen&quot;  DATAFLD=&quot;Table&quot; 
+    SELMODE=&quot;single&quot; SELROW=&quot;Test&quot; STYLE=&quot;DISPLAY:none;&quot;&gt;
+
+document.all.staticTable.rows[0].all.cell.SELMODE
+document.all.staticTable.rows[0].all.cell.SELROW
+</code></pre>
+
+
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Attributes with matching .js properties found so far: 
+                                SORTED
+                                , SORTABLE
+                                , ORDERED
+                                , ORDER
+                                , FIELD
+                                , DATATYPE
+                                , TERMCODE
+                                , SELROW
+                                , SECTIONID
+                                , COLLAPSIBLE
+                                , EXPANDED
+                                , SELMODE
+                                , COLLAPSED
+                                , STARTSEL
+                                , ENDSEL
+                                , DATEVALUE
+                                , DB
+                                , LASTROW
+                                , ENDSEL
+                                , DATATBL
+                                , ENABLED
+                                , SELECTED
+                                , CLOSEBUTTON
+                                , OLDTABLEID
+                                , TTJID
+
+                            </li>
+                            <li>
+                                650 matches in 150 files, but there could be more.
+                            </li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <ul>
+                            <li>
+                                Create one custom getter and setter for every one of the used properties and log its use and progressively replace them with standard js attribute access.
+                            </li>
+                        </ul>
+<pre><code data-trim>
+Object.defineProperty(HTMLElement.prototype, "{{CASE_SEN_ATTRIBUTE}}", { 
+    get: function () {  
+        - Search the underlying Html markup element for a 
+        matching attribute value. 
+        - Log with setTimout to trace all usages of this pattern and 
+        refactor the code when performance is likely to degrade  
+    }  
+}); 
+</code></pre>
+
+                    </section>
+
+
+
+                    <section>
+                        <h3>Resources</h3>
+
+                        <p>Regular Expression for potential custom attributes:</p>
+<pre><code>
+    <((?!compiler|nobr|browsersequencelist|toc|property|panes|actionscriptproperties|itemstyle|imagesettings|clientsideevents|ppfml|agents|topiclist|html|footerstyle|lineargradientbrush|textblock|sqwebskin|synonyms|filenameentry|compilation|cellstyle|cellblock|headerstyle|location|param|usingtask|polyline|librarypathentry|clientevents|menudata|body|authentication|membership|rolemanager|exportsettings|rowindicatorcolumn|expandcollapsecolumn|roottable|rowstyle|layoutsettings|mastertableview|add|margin)[\w])+[\s]+(((?!class|method|attr|content|runat|rows|onload|href|cellspacing|cellpadding|cellspan|colspan|rowspan|bgcolor|style|language|align|id|title|width|height|border|valign|type|name|src|color|backcolor|ccsclass|xmlns|background|value|cssclass|filterimageurl|addnewrecordimageurl|enableclientkeyvalues|allowcolumnresize|allowscroll|allowcolumnresize|nowrap|wrap|allowrowselect|notselectedimageurl|onrequeststart|onrowclick|onresponseend|onrequeststart|forecolor|bottom|top|oncelldblclick|automaticfilter|ms_bodypositioning|onclick|duration|target|cref|lang|include|size|guid|postinputcontrols|defaultredirect|face|inline|inline|analyzerid|dir|count|cookiename|profile|enableeventvalidation|validaterequest|controlrenderingcompatibilityversion|clientidmode|orientation|margin|horizontalscrollbarvisibility|verticalscrollbarvisibility|defaultlinktype)[\w]+)[\s]*=[\s]*["']?((?:.(?!["']?\s+(?:\S+) =|[>"']))+.)["']?[\s]*)+> 
+
+</code></pre>
+
+                        <p>Regular Expression for upper case properties in *.js files:</p>
+<pre><code>
+    [\w]+[\.]((?![a-z])[A-Z]+(?![a-z]))+[\s]
+
+</code></pre>
+
+
+                        <p>Regular Expression to match known object property names:</p>
+<pre><code>
+    \.(sorted|sortable|ordered|termcode|sectionid ... )[^\w] 
+
+</code></pre>
+                       
+                    </section>
+
+
+                </section>
+
+
+                
+
 
 
 			</div>
