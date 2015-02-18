@@ -1360,6 +1360,68 @@ Object.defineProperty(HTMLElement.prototype, "{{CASE_SEN_ATTRIBUTE}}", {
                 </section>
 
 
+                <!--  DHTML DATA BINDING-->
+                 
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>DHTML DataBinding</h2>
+
+                        <p>
+                            iPower leverages IE's <a href="https://msdn.microsoft.com/en-us/library/ms531384(v=vs.85).aspx" target="_blank">data binding architecture</a> 
+                             to dynamically build data driven HTML on the browser.
+                        </p>
+                        <p>
+                           This technology does not work in Chrome and its support has been removed in IE10.
+                        </p>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Data binding on page elements is configured through the following HTML attributes: dataSrc, dataFld, dataFormatAs, dataPageSize.
+                            </li>
+                            <li>
+                                The dataSrc attribute connects the repeater component to the data source. Fortunately, in iPower it is only present on TABLE elements.
+                            </li>
+                        </ul>
+
+
+<pre><code data-trim>           
+&lt;TABLE dataFld=&quot;Table&quot; dataSrc=&quot;#xmlDataHeaderGet&quot; width=&quot;100%&quot;&gt;
+    &lt;TR&gt;
+        &lt;TD vAlign=&quot;top&quot;&gt;
+             &lt;LABEL dataFld=&quot;vcOfficeDesc&quot; id=&quot;lblBankingOffice&quot;&gt;&lt;/LABEL&gt;
+        &lt;TD&gt;
+    &lt;TR&gt;
+&lt;TABLE&gt;
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            AngularJS directives can be brought in to recreate the behavior of the DHTML data binding attributes (dataSrc, dataFld, dataFormatAs).
+                        </p>
+                        <p>
+                            AngularJS is advantageous over other frameworks since it is already being used by the iPower teams.
+                        </p>
+
+                    </section>
+
+
+                </section>
+
+
+
                 
                 <!--  DYNAMICALLY INJECTED HTML-->
 
@@ -1373,8 +1435,6 @@ Object.defineProperty(HTMLElement.prototype, "{{CASE_SEN_ATTRIBUTE}}", {
                             There are many instances where HTML strings are built through JavaScript and then dynamically injected  into the DOM.
                         </p>
 
-
-
 <pre><code >           
          
 objRow.all.dcBudgetHrsRemaining.outerHTML = &#39;&lt;input 
@@ -1386,8 +1446,6 @@ objRow.all.dcBudgetHrsRemaining.outerHTML = &#39;&lt;input
     oncontextmenu=&quot;return false;&quot; style=&quot;WIDTH:60px&quot; /&gt;&#39;; 
 
 </code></pre>
-
-
 
                     </section>
 
@@ -1430,6 +1488,7 @@ Object.defineProperty(HTMLTableElement.prototype, "outerHtml", {
                 </section>
 
 
+               
                
 
 
