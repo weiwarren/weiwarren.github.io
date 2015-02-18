@@ -1566,8 +1566,68 @@ Object.defineProperty(HTMLTableElement.prototype, "outerHtml", {
                 </section>
 
 
-               
-               
+
+                <!--  SELECTION CREATERANGE() -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>document.selection.createRange()</h2>
+
+                        <p>
+                            Creates a "TextRange" object from the current text selection, or a controlRange collection from a control selection.
+                        </p>
+                        <p>
+                            This object is not implemented in Chrome.
+                        </p>
+
+<pre><code data-trim>           
+var objRng = document.selection.createRange(); 
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Found in the following script files:  pwcLib.js, pwcRegExp.js, pwcTSEvents.js, pwcTextBoxMultiLine.htc
+                            </li>
+                            <li>Has the following uses: 
+                                <ul>
+                                    <li>Validating a mask.</li>
+                                    <li>Stop user from drag, right click.</li>
+                                    <li>Used to compare text lengths when pasting from clipboard.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            The TextRange functionality must be replaced with the "Selection" object standard supported by ie9 and chrome. 
+                        </p>
+
+
+
+<pre><code data-trim>           
+    window.getSelection()
+</code></pre>
+
+                    </section>
+
+
+                </section>
+
+
+
 
 
 			</div>
