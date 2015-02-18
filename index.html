@@ -627,6 +627,84 @@ window.event.propertyName
                 </section>
 
 
+                <!-- *.ATTACHEVENT -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>*.attachEvent(name, handler)</h2>
+
+                        <p>
+                            Binds the specified function to an event, so that the function gets called whenever the event fires on the object.
+                        </p>
+                        <p>
+                            Not supported in chrome and its support has been dropped in IE11.
+                        </p>
+
+
+
+
+                    </section>
+
+                    <section>
+
+                        <h3>Analysis</h3>
+                        <ul>
+                            <li>
+                                Used to bind table mutation events like:
+                                onchange
+                                , onpropertychange
+                                , onclick
+                                , onmouseover
+                                , onmouseout
+                                , onload
+                                , onscroll
+                                , oncontextmenu
+                                , onreadystatechange
+                                , ondragstart
+                                , onselectstart
+                                , ondblclick
+                                , onbeforeunload
+                                , onkeyup
+                                , onblur
+                                , onfocus
+                                , onkeydown
+                            </li>
+                        </ul>
+
+<pre><code data-trim>                     
+document.getElementById("cboLoS")
+    .attachEvent("onchange", fnHideGridGetLosDetails);
+document.attachEvent("oncontextmenu", oncontextmenu);
+tblgridExpenseOpenData.attachEvent("onreadystatechange"
+        , fnExpenseRecordSelect);
+</code></pre>
+
+                    </section>
+
+                    
+
+
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                            The attachEvent method can be added to the prototype of HTML Elements. This method must remove the "on" prefix and remediate any non standard events
+                            such as onreadystatechange or onpropertychange.
+                        </p>
+
+
+<pre><code data-trim>        
+HTMLElement.prototype.attachEvent= function(eventName,handler){
+    /* Remove "on" prefix when necessary */
+    /* Transform to valid cross-browser event */
+    this.addEventListener({{NEW_EVENT_NAME}}, handler); 
+}             
+</code></pre>
+                    </section>
+
+                </section>
+
                
                 <!-- .HTC BEHAVIOR  -->
 
