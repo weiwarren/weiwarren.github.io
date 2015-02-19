@@ -98,8 +98,7 @@
 
                 </section>
 				
-                
-			
+
                 
                 <!-- EXCEPTION HANDLING -->
 
@@ -545,7 +544,7 @@ function fnGridColumnHide(tblGrid, intColIndex, strDisplayStyle) {
                         <h2>onpropertychange event</h2>
 
                         <p>
-                            IE specific event that identifies when any property of an element is changed, either by the user or as a result of a programmatic change.
+                            <a href="https://msdn.microsoft.com/en-us/library/ie/ms536956(v=vs.85).aspx" target="_blank"> IE specific event</a> that identifies when any property of an element is changed, either by the user or as a result of a programmatic change.
                         </p>
 
                     </section>
@@ -1681,7 +1680,76 @@ var objRng = document.selection.createRange();
 
 
 
+                <!--  *.disabled -->
 
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>*.disabled</h2>
+
+                        <p>
+                           There are multiple comparisons for *.disabled == false which will not work in chrome since it does not implement this property on the HTMLElement type. 
+                        </p>
+                      
+
+<pre><code data-trim>           
+if(tblgridADOUTargetDaysGetData.rows[intRow]
+                .all.txtBillingTgt.disabled == false){
+	objDataChkBox.checked = blnCheck;
+}
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                The "disabled" property is implemented up to IE 11 and returns true or false depending on whether the element contains the "disabled" attribute or not.
+                            </li>
+                            <li>
+                                Chrome returns "undefined" for both cases whether the attribute exists or not.
+                            </li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            The TextRange functionality must be replaced with the "Selection" object standard supported by ie9 and chrome.
+                        </p>
+
+
+<pre><code data-trim>        
+                 
+Object.defineProperty(HTMLElement.prototype, "disabled", { 
+    get: function () {  
+        /* 
+            return true or false after validating the existence of 
+            the "disabled" attribute on the underlying markup element.
+        */ 
+    }
+    , set: function (bool) {  
+        /*  set the attribute on the markup element */ 
+    }   
+});
+           
+</code></pre>
+                    </section>
+
+
+                </section>
+
+
+
+
+           
 
 			</div>
 
