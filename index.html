@@ -1680,7 +1680,7 @@ var objRng = document.selection.createRange();
 
 
 
-                <!--  *.disabled -->
+                <!--  *.DISABLED -->
 
                 <section data-background>
 
@@ -1690,6 +1690,9 @@ var objRng = document.selection.createRange();
 
                         <p>
                            There are multiple comparisons for *.disabled == false which will not work in chrome since it does not implement this property on the HTMLElement type. 
+                        </p>
+                        <p>
+                            Additionally, the color of the HTML element does not turn gray as it used to in IE9 and below.
                         </p>
                       
 
@@ -1724,6 +1727,9 @@ if(tblgridADOUTargetDaysGetData.rows[intRow]
                         <p>
                             The TextRange functionality must be replaced with the "Selection" object standard supported by ie9 and chrome.
                         </p>
+                        <p>
+                            Create a custom .css style that applies to all *.disabled elements and changes their color and inner contents color.
+                        </p>
 
 
 <pre><code data-trim>        
@@ -1747,8 +1753,72 @@ Object.defineProperty(HTMLElement.prototype, "disabled", {
                 </section>
 
 
+                <!--  *.DISABLED -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>XML Data Island</h2>
+
+                        <p>
+                            XML Data Islands can be classified as a Data Source Object within IE's legacy Data Binding Architecture.
+                        </p>
+                        <p>
+                            Their support has been removed in IE and do not work in chrome.
+                        </p>
+                       
+
+<pre><code data-trim>           
+&lt;XML id=&quot;xmlDBCommon&quot;&gt;&lt;/XML&gt;
+&lt;XML id=&quot;xmlDBError&quot;&gt;&lt;/XML&gt;
+&lt;XML id=&quot;xmlDataCSHiCashNewUnBankedGet&quot;&gt;&lt;/XML&gt;
+</code></pre>
+
+                    </section>
 
 
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Whenever IE finds an "xml" markup element, it creates an in-memory Data Source object that can be used for data binding and data manipulation.
+                            </li>
+                            <li>
+                                The object's data can be initialized from an external file or service location or it can be embedded as XML inside the "xml" tag. 
+                            </li>
+                            <li>
+                                The Data Island in-memory object provides two interfaces to interact with the contained data: an ActiveX <strong>RecordSet</strong> object and 
+                                a <strong>IXMLDOMDocument2</strong>  direct interface to the XML, of which none are cross browser.
+                            </li>
+                        </ul>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Create a custom js prototype which can act as the in-memory manager for the Data Islands. This object has to rely on two other custom prototypes for the 
+                            IXMLDOMDocument2 interface and the ActiveX RecordSet object.
+                        </p>
+                        <p>
+                            Create an AngularJs element directive ("xml") that can trigger the instantiation of a custom Xml Data Island manager object in the window scope.
+                        </p>
+                       
+                        <p>
+                            Use a custom css style to make the "xml" tag and its contents invisible to the user interface.
+                        </p>
+
+                    </section>
+
+
+                </section>
+
+
+                
            
 
 			</div>
