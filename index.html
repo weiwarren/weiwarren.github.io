@@ -536,6 +536,58 @@ function fnGridColumnHide(tblGrid, intColIndex, strDisplayStyle) {
                 </section>
 
 
+                <!-- ON PROPERTY CHANGE -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>onpropertychange event</h2>
+
+                        <p>
+                            IE specific event that identifies when any property of an element is changed, either by the user or as a result of a programmatic change.
+                        </p>
+
+                    </section>
+
+                    <section>
+
+                        <h3>Analysis</h3>
+                        <ul>
+                            <li>Mostly used to trigger functionality on form field changes (INPUT type="text|hidden|file|radio")</li>
+                            <li>Minor use on other elements to trigger functionality on DOM mutation changes (A, TR, SELECT).</li>
+                        </ul>
+
+
+<pre><code data-trim>                     
+&lt;input id=&quot;objFile&quot; onpropertychange=&quot;fnHTMLInputFile_onChange();&quot; 
+	type=&quot;file&quot; name=&quot;objFile&quot; runat=&quot;server&quot;&gt;
+&lt;SELECT ID=&quot;ddlInvoiceTemplateID&quot; DATAFLD=&quot;intTemplateID&quot; 
+    ONCHANGE=&quot;ddlInvoiceTemplateID_onChange(this);&quot; 
+    ONPROPERTYCHANGE=&quot;ddlInvoiceTemplateID_onPropertyChange(this);&quot;&gt;
+    &lt;/SELECT&gt;
+&lt;TR id=&quot;CostEditExpensesContainer&quot;  SELECTED=&quot;false&quot;  
+    onpropertychange=&quot;fnSetButtonRow()&quot;&gt;
+&lt;A ONPROPERTYCHANGE=&quot;fnWebLink_onPropertyChange(this);&quot;
+    DATAFLD=&quot;vcWebLink&quot; &gt;&lt;/A&gt;
+</code></pre>
+
+                    </section>
+
+   
+                    <section>
+                        <h3>Remediation</h3>
+                        <p>
+                           One option is to try and implement a <a href="http://stackoverflow.com/questions/3219758/detect-changes-in-the-dom" target="_blank">cross browser mutation observer</a>
+                            that can mimic catch-all behavior of the onpropertychange event  (childList, attributes, characterData, subtree, attributeOldValue, characterDataOldValue, attributeFilter).
+                        </p>
+                        <p>
+                            An alternative option is to go through the different cases and replace them with the specific event that is required for the functionality to be cross browser compatible (208 instances).
+                        </p>
+                    </section>
+
+                </section>
+
 
 
                 <!-- WINDOW.EVENT -->
@@ -753,7 +805,7 @@ Response.Write(&quot;&lt;TABLE STYLE=&quot; + Chr(34)
                            .htc files must be independently evaluated and rewritten making sure their methods do not pollute the global context. 
                        </p>
                         <p>
-                            The two .htc  authored by Microsoftused in the PwCCube project must be rewritten or replaced by a library that extends functionality on tables.
+                            The two .htc used in the PwCCube project (authored by Microsoft) must be rewritten or replaced by a library that extends functionality on tables.
                         </p>
 
                     </section>
@@ -906,7 +958,7 @@ ActiveXObject("PwC.iPower.Authentication.ClientUtility")
                             <li>Can be replaced by File Api <a href="http://caniuse.com/#feat=fileapi" target="_blank">(ie10+ and chrome)</a>. 
                                 The File Api provides readonly information such as name, file size, mimetype, and a reference to the file handle.
                             </li>
-                            <li style="color:red !important">Used also in PwCFeeNote.jse file. (Will this file be removed?).</li>
+                            <li style="color:red !important">Used also in PwCFeeNote.jse file.</li>
                         </ul>
 
                     </section>
@@ -963,7 +1015,7 @@ ActiveXObject("PwC.iPower.Authentication.ClientUtility")
 
                         <ul>
                             <li>Used in iPower to capture a downloaded file stream before saving it to a specific directory.</li>
-                            <li style="color:red !important">Used also in PwCFeeNote.jse file. (Will this file be removed).</li>
+                            <li style="color:red !important">Used also in PwCFeeNote.jse file.</li>
                         </ul>
 
                     </section>
@@ -981,7 +1033,7 @@ ActiveXObject("PwC.iPower.Authentication.ClientUtility")
 
                         <ul>
                             <li>Queries registry key "HKCU\...\Device" for default printer. </li>
-                            <li style="color:red !important">Opens the Fee Note processing application from pwcFeeNote.jse file. (Will this file be removed?).</li>
+                            <li style="color:red !important">Opens the Fee Note processing application from pwcFeeNote.jse file. </li>
                             <li>Seems to launch IE and then Adobe reader to print PDFs ( WshShell.AppActivate("frmFNPDFTaxInvoice.aspx?TIPATH=" + (arrPrintBatch[0])))</li>
                         </ul>
 
@@ -1026,7 +1078,7 @@ ActiveXObject("PwC.iPower.Authentication.ClientUtility")
 </code></pre>
 
                         <ul>
-                            <li style="color:red !important">LaunchesTax Invoice in Word from PwCFeeNote.jse file. (Will this file be removed?).</li>
+                            <li style="color:red !important">LaunchesTax Invoice in Word from PwCFeeNote.jse file. </li>
                         </ul>
 
                       
@@ -1564,6 +1616,7 @@ Object.defineProperty(HTMLTableElement.prototype, "outerHtml", {
 
 
                 </section>
+
 
 
 
