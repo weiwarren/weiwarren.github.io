@@ -1,0 +1,175 @@
+﻿<html>
+
+<head>
+    <title></title>
+
+    <script type="text/javascript" src="sarissa/sarissa.js"></script>
+    <script type="text/javascript" src="sarissa/sarissa_ieemu_xpath.js"></script>
+
+    <script type="text/javascript">
+
+        function getParserFn() {
+            var rt = null;
+
+            if (window.ActiveXObject || "ActiveXObject" in window) {
+                rt = function (xmlStr) {
+                    var xmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+                    xmlDoc.async = "false";
+                    xmlDoc.loadXML(xmlStr);
+                    return xmlDoc;
+                };
+            }
+            else if (typeof window.DOMParser != "undefined") {
+                rt = function (xmlStr) {
+                    return (new window.DOMParser()).parseFromString(xmlStr, "text/xml");
+                };
+            }
+            else {
+                throw new Error("No XML parser found");
+            }
+
+            return rt;
+        }
+
+    function loadXMLDocFromIsland(scriptId) {
+        var parseFn = getParserFn();
+        return parseFn(document.getElementById(scriptId).innerHTML)
+    }
+
+    function displayResult() {
+        var xml = loadXMLDocFromIsland("dataDoc");
+
+        transform(xml, loadXMLDocFromIsland("transformationDoc"), "example");
+        console.log(Object.prototype.toString.call(xml))
+
+        var nodes = xml.selectNodes('//cd[year>=1970 and year <= 1980]/title');
+        for (var i = 0; i < nodes.length; i++) {
+            console.log(nodes[i].contents)
+            //document.getElementById("sample").appendChild();
+        }
+        
+    }
+
+
+    function transform(xml, xsl, targetId) {
+        if (window.ActiveXObject || "ActiveXObject" in window) {
+            // code for IE
+            ex = xml.transformNode(xsl);
+            document.getElementById("example").innerHTML = ex;
+        }
+        else if (document.implementation && document.implementation.createDocument) {
+
+            (function () {
+
+                var proc = new XSLTProcessor();
+                proc.importStylesheet(xsl);
+                var ownerDocument = document.implementation.createDocument("", "", null);
+                var result = proc.transformToFragment(xml, ownerDocument);
+                document.getElementById(targetId).appendChild(result);
+
+            })();
+        }
+    }
+
+
+
+    window.onload = displayResult
+
+
+    var xmlDoc1 = new window.ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc1.async = "false";
+    xmlDoc1.load("gridProductSelection.xml");
+   // console.log(xmlDoc1.xml)
+
+    var xmlDoc2 = new ActiveXObject("MSXML2.DOMDocument");
+    console.log("2")
+    </script>
+
+</head>
+<body>
+    
+    <XML somETHng="" id="testXml">
+        <innerTEXT></innerTEXT>
+    </XML>
+
+    <script type="application/xml" id="dataDoc">
+        <catalog>
+            <cd><title>Come On Over</title><artist>Shania Twain</artist><year>1997</year></cd>
+            <cd><title>Led Zeppelin IV</title><artist>Led Zeppelin</artist><year>1971</year></cd>
+            <cd><title>Jagged Little Pill</title><artist>Alanis Morissette</artist><year>1995</year></cd>
+            <cd><title>Falling into You</title><artist>Celine Dion</artist><year>1996</year></cd>
+            <cd><title>Sgt. Pepper's Lonely Hearts Club Band</title><artist>The Beatles</artist><year>1967</year></cd>
+            <cd><title>Hotel California</title><artist>Eagles</artist><year>1976</year></cd>
+            <cd><title>Music Box</title><artist>Mariah Carey</artist><year>1993</year></cd>
+            <cd><title>Dirty Dancing</title><artist>Various artists</artist><year>1987</year></cd>
+            <cd><title>Let's Talk About Love</title><artist>Celine Dion</artist><year>1997</year></cd>
+            <cd><title>1</title><artist>The Beatles</artist><year>2000</year></cd>
+            <cd><title>21</title><artist>Adele</artist><year>2011</year></cd>
+            <cd><title>Abbey Road</title><artist>The Beatles</artist><year>1969</year></cd>
+            <cd><title>Born in the U.S.A.</title><artist>Bruce Springsteen</artist><year>1984</year></cd>
+            <cd><title>Brothers in Arms</title><artist>Dire Straits</artist><year>1985</year></cd>
+            <cd><title>Whitney Houston</title><artist>Whitney Houston</artist><year>1985</year></cd>
+            <cd><title>Titanic: Music from the Motion Picture</title><artist>James Horner</artist><year>1997</year></cd>
+            <cd><title>The Immaculate Collection</title><artist>Madonna</artist><year>1990</year></cd>
+            <cd><title>Metallica</title><artist>Metallica</artist><year>1991</year></cd>
+            <cd><title>Bad</title><artist>Michael Jackson</artist><year>1987</year></cd>
+            <cd><title>Dangerous</title><artist>Michael Jackson</artist><year>1991</year></cd>
+            <cd><title>Nevermind</title><artist>Nirvana</artist><year>1991</year></cd>
+            <cd><title>The Wall</title><artist>Pink Floyd</artist><year>1979</year></cd>
+            <cd><title>Supernatural</title><artist>Santana</artist><year>1999</year></cd>
+            <cd><title>Appetite for Destruction</title><artist>Guns N' Roses</artist><year>1987</year></cd>
+        </catalog>
+    </script>
+
+    <script type="application/xml" id="transformationDoc">
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+            <xsl:template match="/">
+                <html>
+                <body>
+                    <h2>My CD Collection</h2>
+                    <TABLE BORDER="1">
+                        <TR bgcolor="#9acd32">
+                            <TH style="text-align:left">Title</TH>
+                            <th style="text-align:left">Artist</th>
+                            <th style="text-align:left">Year</th>
+                        </TR>
+                        <xsl:for-each select="catalog/cd">
+                            <xsl:sort select="year" />
+                            <xsl:sort select="title" />
+                            <tr>
+                                <TD><xsl:value-of select="title" /></TD>
+                                <td><xsl:value-of select="artist" /></td>
+                                <td><xsl:value-of select="year" /></td>
+                            </tr>
+                        </xsl:for-each>
+                    </TABLE>
+                </body>
+            </html>
+        </xsl:template>
+    </xsl:stylesheet>
+</script>
+
+    <script type="application/xml" id="transformationDoc1">
+        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+            <xsl:template match="/">
+                <html>
+                <body>
+                    <h2>Sample</h2>
+                    <xsl:for-each select="title">
+                        <xsl:value-of select="title" />
+                    </xsl:for-each>
+                </body>
+            </html>
+        </xsl:template>
+    </xsl:stylesheet>
+</script>
+
+    <div id="container">
+        <div id="example" someKindOFTEST="2"></div>
+        <div id="sample" test="1" ></div>
+    </div>
+
+
+</body>
+</html>
+
