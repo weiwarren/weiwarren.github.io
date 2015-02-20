@@ -1753,7 +1753,8 @@ Object.defineProperty(HTMLElement.prototype, "disabled", {
                 </section>
 
 
-                <!--  *.DISABLED -->
+
+                <!--  XML DATA ISLAND -->
 
                 <section data-background>
 
@@ -1765,7 +1766,7 @@ Object.defineProperty(HTMLElement.prototype, "disabled", {
                             XML Data Islands can be classified as a Data Source Object within IE's legacy Data Binding Architecture.
                         </p>
                         <p>
-                            Their support has been removed in IE and do not work in chrome.
+                            Their support has been removed in IE 10 and they do not work in Chrome.
                         </p>
                        
 
@@ -1819,7 +1820,142 @@ Object.defineProperty(HTMLElement.prototype, "disabled", {
 
 
                 
-           
+                <!-- IXMLDOMDocument2 -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>XML Data Island IXMLDOMDocument2</h2>
+
+                        <p>
+                            Data Islands expose access to the contained data through the <a href="https://msdn.microsoft.com/en-us/library/microsoft.office.interop.infopath.xml.ixmldomdocument2_members.aspx" target="_blank">Microsoft IXMLDOMDocument2</a>  interface.
+                        </p>
+                        <p>
+                            This interface is implemented by the Microsoft.XMLDOM ActiveX component and gives XPath, XSLT and data manipulation to XML documents.
+                        </p>
+
+
+<pre><code data-trim>           
+    xmlDataIsland.XMLDocument.[IXMLDOMDocument2]
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                               Used to query and modify the underlying XML contained in the Data Islands. 
+                            </li>
+                            <li>
+                                Also used to perform XSLT transformations.
+                            </li>
+                        </ul>
+
+<pre><code data-trim>           
+var nodEXRateItem = xmlgridADMiExchangeRateSelectCols
+    .selectSingleNode("/Columns/Column [@FIELD='dcExchangeRate']");
+if (nodEXRateItem)
+{
+    nodEXRateItem.selectSingleNode("@FORMAT").text
+         = fnGetDecimalFormat(gkEXCHANGE_RATE_SIZE); 
+}
+/* ----------------------------- */
+xmlSource.documentElement.transformNodeToObject(
+    xslSort.documentElement, xmlData.XMLDocument
+    );
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Create an object that can mimic the IXMLDOMDocument2 interface in Chrome.
+                        </p>
+                        <p>
+                           Only members used in iPower have to be supported and an NonImplemented exception can be thrown for the others.
+                        </p>
+                    </section>
+
+
+                </section>
+
+
+                <!-- RECORDESET -->
+
+                <section data-background>
+
+                    <section>
+                        <h2 class="sectionIdx"></h2>
+                        <h2>XML Data Island RecordSet</h2>
+
+                        <p>
+                            Data Islands also expose access to the contained data through the <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms675841(v=vs.85).aspx" target="_blank">Microsoft ADODB.Recordset </a>  interface.
+                        </p>
+                        <p>
+                            This interface is implemented by the ADODB.Recordset ActiveX component and gives table cursor style access to the XML document.
+                        </p>
+
+
+<pre><code data-trim>           
+             xmlDataIsland.recordset.[ADODB.Recordset]
+</code></pre>
+
+                    </section>
+
+
+
+                    <section>
+                        <h3>Analysis</h3>
+
+                        <ul>
+                            <li>
+                                Used to query and modify the underlying XML contained in the Data Islands.
+                            </li>
+                        </ul>
+
+<pre><code data-trim>           
+while (!objXMLRS.RecordSet.EOF){  
+	strClientCode = fnTrim(objXMLRS.RecordSet
+                            .Fields("chClientCode").value);
+	strTermSchedInd = fnTrim(objXMLRS.RecordSet
+                            .Fields("chTermSchedInd").value);
+	if (strTermSchedInd == "Y"){
+		if (!fnScheduleTerminate(strClientCode, 'Client')){
+			return false;
+		}
+		else if (!fnScheduleTerminate(strClientCode, 'Org')){
+			return false;
+		}
+	}
+	objXMLRS.RecordSet.MoveNext();
+}
+</code></pre>
+
+                    </section>
+
+
+                    <section>
+                        <h3>Remediation</h3>
+
+                        <p>
+                            Create an object that can mimic the ADODB.Recordset interface in Chrome.
+                        </p>
+                        <p>
+                            Only members used in iPower have to be supported and an NonImplemented exception can be thrown for the others.
+                        </p>
+                    </section>
+
+
+
+                </section>
+
 
 			</div>
 
