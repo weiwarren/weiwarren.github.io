@@ -19,9 +19,15 @@
         doc2.loadXML("<NewDataSet>\r\n\t<Table intExpenseID=\"1427984\" chOfficeCode=\"NAT\" sdPerEndDate=\"20140831\" chVoucherNo=\"1680\" dcTotExpAmt=\"298.0000\" chExpStatus=\"Approved\" sdPayExportDate=\"20140825\" vcClaimStaffName=\"Stewart Robyn\" vcOfficeDesc=\"National\"/>\r\n\t<Table intExpenseID=\"1411929\" chOfficeCode=\"NAT\" sdPerEndDate=\"20140630\" chVoucherNo=\"0840\" dcTotExpAmt=\"98.0000\" chExpStatus=\"Approved\" sdPayExportDate=\"20140623\" vcClaimStaffName=\"Stewart Robyn\" vcOfficeDesc=\"National\"/>\r\n\t<Table intExpenseID=\"1382427\" chOfficeCode=\"NAT\" sdPerEndDate=\"20140315\" chVoucherNo=\"1005\" dcTotExpAmt=\"196.0000\" chExpStatus=\"Approved\" sdPayExportDate=\"20140310\" vcClaimStaffName=\"Stewart Robyn\" vcOfficeDesc=\"National\"/>\r\n\t<Table intExpenseID=\"1354257\" chOfficeCode=\"NAT\" sdPerEndDate=\"20131115\" chVoucherNo=\"0917\" dcTotExpAmt=\"98.0000\" chExpStatus=\"Approved\" sdPayExportDate=\"20131111\" vcClaimStaffName=\"Stewart Robyn\" vcOfficeDesc=\"National\"/>\r\n\t<Table intExpenseID=\"1335098\" chOfficeCode=\"NAT\" sdPerEndDate=\"20130831\" chVoucherNo=\"0499\" dcTotExpAmt=\"199.0000\" chExpStatus=\"Approved\" sdPayExportDate=\"20130826\" vcClaimStaffName=\"Stewart Robyn\" vcOfficeDesc=\"National\"/>\r\n\t<Output>\r\n\t\t<OParamName>ReturnCode</OParamName>\r\n\t\t<Value>0</Value>\r\n\t</Output>\r\n\t<Output>\r\n\t\t<OParamName>@pvcErrMsg</OParamName>\r\n\t\t<Value/>\r\n\t</Output>\r\n\t<Output>\r\n\t\t<OParamName>FromCache</OParamName>\r\n\t\t<Value>True</Value>\r\n\t</Output>\r\n\t<Columns decimalChar=\".\" groupingChar=\",\" dateFormat=\"d/mm/yyyy\" keepDBData=\"yes\" computeTotals=\"yes\" totalLevel=\"\" totalOnly=\"no\"><Column FIELD=\"vcOfficeDesc\" DATATYPE=\"text\"></Column><Column FIELD=\"sdPerEndDate\" DATATYPE=\"date\" FORMAT=\"dd/mmm/yyyy\"></Column><Column FIELD=\"chVoucherNo\" DATATYPE=\"text\"></Column><Column FIELD=\"dcTotExpAmt\" DATATYPE=\"number\" FORMAT=\"###,##0.00;(###,##0.00)\"></Column><Column FIELD=\"sdPayExportDate\" DATATYPE=\"date\" FORMAT=\"dd/mmm/yyyy\"></Column></Columns></NewDataSet>\r\n");
         textArea2.value = doc2.xml;
 
-        var result = transform(doc2, doc1, textArea3)
-        textArea3.value = result;
+        var result = '<NewDataSet>' + transform(doc2, doc1, textArea3) + '</NewDataSet>'
+       
+
+        var doc3 = xmldso3.XMLDocument;
+        doc3.async = false;
+        doc3.loadXML(result)
         //htmlContent.innerHTML = 
+
+        textArea3.value = result;
     }
 
 
@@ -32,25 +38,27 @@
 
     window.onload = displayResult
 
-
+    var xmlHttp = new ActiveXObject("MSXML2.XMLHTTP.6.0");
+    x = 1;
     </script>
 
 </head>
 <body>
     
-   
+  
 
     <object classid="clsid:550dda30-0541-11d2-9ca9-0060b0ec3d39" id="xmldso1" style="display:none"></object>
 
     <object classid="clsid:550dda30-0541-11d2-9ca9-0060b0ec3d39" id="xmldso2" style="display:none"></object>
 
-   
+    <object classid="clsid:550dda30-0541-11d2-9ca9-0060b0ec3d39" id="xmldso3" style="display:none"></object>
 
-    <textarea cols="150" rows="10" id="textArea1" style="width:100%"></textarea>
+
+    <textarea cols="150" rows="7" id="textArea1" style="width:100%"></textarea>
     
     <hr />
 
-    <textarea cols="150" rows="10" id="textArea2" style="width:100%"></textarea>
+    <textarea cols="150" rows="7" id="textArea2" style="width:100%"></textarea>
     
     <hr />
 
@@ -58,9 +66,19 @@
     <div id="htmlContent"></div>
 
 
-    <textarea cols="150" rows="20" id="textArea3" style="width:100%"></textarea>
+    <textarea cols="150" rows="7" id="textArea3" style="width:100%"></textarea>
 
 
+    <hr />
+
+
+    <table datasrc="#xmldso3" rules="all">
+        <tr>
+            <td>
+                <span datafld="intExpenseID"></span>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 
