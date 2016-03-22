@@ -136,11 +136,11 @@ function myFunction() {
                     p.filter = "number";
                     break;
                 case "date":
-                    p.hide = true;
                     var p2 = $.extend({}, p);
                     p2.valueGetter = "[[gridRenderFactory.valueGetter('date', {originalDateFieldName: '" + p2.field + "'})]]";
                     p2.field = p2.field + "_filter_field";
                     p2.comparator = "[[coreService.comparators.dateComparator]]"
+                    p.hide = true;
                     resultSet.push(sortObject(p2));
 
             }
