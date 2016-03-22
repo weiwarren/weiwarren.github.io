@@ -213,6 +213,7 @@ function myFunction() {
         headerCellRenderer: "[[gridRenderFactory.headerRenderer]]",
         columnDefs: resultSet,
         rowSelection: 'single',
+        enableFilter: true,
         overlayNoRowsTemplate: "[[coreConstant.template.noRecordFound]]",
         overlayLoadingTemplate: "[[coreConstant.template.loading]]",
         rowData: []
