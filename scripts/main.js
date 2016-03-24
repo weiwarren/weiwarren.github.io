@@ -142,7 +142,10 @@ function myFunction() {
                     p2.comparator = "[[coreService.comparators.dateComparator]]"
                     p.hide = true;
                     resultSet.push(sortObject(p2));
-
+					break;
+				case "text":
+					p.cellRenderer = "[[gridRenderFactory.cellRenderer('text')]]";
+					break;
             }
         }
         catch (e) {
