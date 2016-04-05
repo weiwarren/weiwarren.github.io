@@ -187,7 +187,7 @@ function myFunction() {
             case "date":
                 p.cellClass = 'text-center';
             default:
-
+                break;
         }
         //note: this needs to be the last
         this.cellRenderer(p);
