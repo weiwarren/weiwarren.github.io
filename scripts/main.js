@@ -173,11 +173,22 @@ function myFunction() {
         if (eachtd.attributes && eachtd.attributes.TOTAL && eachtd.attributes.TOTAL === 'yes') {
             p.sum = true;
         }
+
         if (eachtd.attributes && eachtd.attributes.ALIGN) {
             p.headerClass = 'text' + '-' + eachtd.attributes.ALIGN.toLowerCase();
-            p.cellClass = 'text' + '-' + eachtd.attributes.ALIGN.toLowerCase();
+            p.cellClass= 'text' + '-' + eachtd.attributes.ALIGN.toLowerCase();
         }
 
+        switch(this.dataType){
+            case "currency":
+            case "number":
+                p.cellClass = 'text-right';
+                break;
+            case "date":
+                p.cellClass = 'text-center';
+            default:
+
+        }
         //note: this needs to be the last
         this.cellRenderer(p);
     };
