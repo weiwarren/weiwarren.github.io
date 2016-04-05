@@ -132,7 +132,7 @@ function myFunction() {
                         p.dataType = "currency";
                         p.cellRenderer = "[[gridRenderFactory.cellRenderer('currency')]]";
                     }
-                    p.valueGetter = "[[gridRenderFactory.cellRenderer('number')]]";
+                    p.valueGetter = "[[gridRenderFactory.valueGetter('number')]]";
                     p.filter = "number";
                     break;
                 case "date":
