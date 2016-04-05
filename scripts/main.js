@@ -179,7 +179,7 @@ function myFunction() {
             p.cellClass= 'text' + '-' + eachtd.attributes.ALIGN.toLowerCase();
         }
 
-        switch(this.dataType){
+        switch(p.dataType){
             case "currency":
             case "number":
                 p.cellClass = 'text-right';
